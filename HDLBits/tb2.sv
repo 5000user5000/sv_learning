@@ -9,20 +9,24 @@ module top_module();
         .s(s),
         .out(out)
     );
+
+    // clock: 10-unit period
+    initial clk = 0;
+    always #5 clk = ~clk;
     
+    // Input stimulus for in
     initial begin
-    	clk = 0;
         in = 0;
-        s = 3'b010;
+
         #20 in = 1;
         #10 in = 0;
         #10 in = 1;
         #30 in = 0;
     end
 
-    always #5 clk = ~clk; 
-
+    // Stimulus for s
     initial begin
+        s = 3'b010;
         #10 s = 3'b110;
         #10 s = 3'b010;
         #10 s = 3'b111;
